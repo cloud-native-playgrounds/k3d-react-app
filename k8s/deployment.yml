@@ -1,0 +1,23 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: k3d-react-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: k3d-react-app
+  template:
+    metadata:
+      labels:
+        app: k3d-react-app
+    spec:
+      containers:
+        - name: k3d-react-app
+          image: <YOUR_IMAGE>
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+      restartPolicy: Always
+      imagePullSecrets:
+          - name: aws-ecr-credential
